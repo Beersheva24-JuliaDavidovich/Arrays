@@ -43,4 +43,22 @@ void removeTest(){
     int [] expected2 = {10, 7, 12, -4, 13, 3};
     assertArrayEquals(expected2, remove(ar, 6));
 }
+
+@Test
+void pushMaxAtEndTest(){
+    int[] testNumbers = java.util.Arrays.copyOf(numbers, numbers.length);
+    pushMaxAtEnd(testNumbers);
+    assertEquals(14, testNumbers[testNumbers.length - 1]);
+    assertEquals(13, testNumbers[testNumbers.length - 2]);
+    testNumbers = new int[] {20, -10, 10, -17};
+    pushMaxAtEnd(testNumbers);
+}
+
+@Test
+void sortTest() {
+    int[] testNumbers = java.util.Arrays.copyOf(numbers, numbers.length);
+    int [] expected = {-4, 3, 7, 10, 12, 13, 14};
+    sort(testNumbers);
+    assertArrayEquals(expected, testNumbers);
+}
 }

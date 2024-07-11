@@ -50,4 +50,25 @@ public class Arrays {
         // creates new array with no element in "numbers" at "index"
         // to apply System.arraycopy method
     }
+
+    //Bubble sort
+    public static void pushMaxAtEnd(int [] ar) {
+        for(int i = 1; i < ar.length; i++) {
+            if (ar[i] < ar[i - 1]) {
+                swap(ar, i, i - 1);
+            }
+        }
+    }
+
+    private static void swap(int[] ar, int i, int j) {
+        int tmp = ar[i];
+        ar[i] = ar[j];
+        ar[j] = tmp;
+    }
+
+    public static void sort(int [] ar) {
+        for(int i = 0; i < ar.length; i ++) {
+            pushMaxAtEnd(ar);
+        }
+    }
 }
