@@ -1,6 +1,9 @@
 package telran.util;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.function.Predicate;
 
 public class Arrays {
     public static int search(int[] ar, int key) {
@@ -218,4 +221,59 @@ public class Arrays {
         }
         return l > r ? - (l + 1) : mid;
     }
-}
+
+    @SuppressWarnings("unchecked")
+    public static <T> int binarySearch(T[] array, T key) {
+        return binarySearch(array, key, (Comparator<T>) Comparator.naturalOrder());
+    }
+
+    public static <T> T[] insert(T [] array, int index, T item) {
+        T[] res = java.util.Arrays.copyOf(array, array.length + 1);
+        System.arraycopy(array, index, res, index + 1, array.length - index);
+        res[index] = item;
+        return res;
+    }
+    public static <T> T[] find(T[] array, Predicate<T> predicate) {
+        T[] result = java.util.Arrays.copyOf(array, 0);
+        for(int i = 0; i < array.length; i++) {
+            if(predicate.test(array[i])) {
+                result = insert(result, result.length, array[i]);
+            }
+        }
+        return result;
+    }
+    // public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
+    //     T[] result = java.util.Arrays.copyOf(array, 0);
+    //     for( int i = 0; i < array.length; i++) {
+    //         if(predicate.test(array[i])) {
+    //             result = insert(result, result.length, array[i]);
+    //         }
+    //     }
+    //     return result;
+    // }
+
+    public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
+        // T[] result = java.util.Arrays.copyOf(array, 0);
+        // for(int i = 0; i < array.length; i++) {
+        //     if(!predicate.test(array[i])) {
+        //         result = insert(result, result.length, array[i]);
+        //     }
+        // }
+        return find(array, predicate.negate());
+    }
+
+    public static <T> void evenOddSorting(T[] array, Comparator<T> comparator) {
+        int length = array.length;
+        boolean flSort = false;
+        do {
+            length--;
+            flSort = true;
+            for (int i = 0; i < length; i++) {
+                if (comparator.compare(array[i], array[i + 1]) > 0) {
+                    swap(array, i, i + 1);
+                    flSort = false;
+                }
+            } 
+        } while (!flSort);
+    }
+    }
