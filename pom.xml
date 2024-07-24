@@ -20,5 +20,11 @@
         <version>5.10.3</version>
         <scope>test</scope>
         </dependency>
+        
+          <dependency>
+            <groupId>at.bestsolution.eclipse</groupId>
+            <artifactId>org.eclipse.fx.text</artifactId>
+            <version>2.2.0</version>
+          </dependency>
         </dependencies>
 </project>

@@ -106,40 +106,6 @@ public class Arrays {
         return insert(arSorted, index, number);
     }
 
-    // public static boolean isOneSwap(int[] array) {
-    //     int count = 0;
-    //     boolean res = false;
-    //     int index1 = -1;
-    //     int index2 = -1;
-    //     for (int i = 0; i < array.length - 1; i++) {
-    //         if (array[i] > array[i + 1]) {
-    //             if (index1 == -1) {
-    //                 index1 = i;
-    //             }
-    //             index2 = i + 1;
-    //             count++;
-    //         }
-    //     }
-    //     if (count <= 2 && count != 0) {
-    //         for (int i = 0; i < array.length - 1; i++) {
-    //             if (array[i] == array[i + 1]) {
-    //                 index2 = i + 1;
-    //             }
-    //         }
-    //         if (index1 != index2 - 1) {
-    //             if ((index1 != 0 && array[index1 - 1] <= array[index2] && array[index2] <= array[index1 + 1]
-    //                     || index1 == 0 && array[index2] <= array[index1 + 1])
-    //                     && (index2 != array.length - 1 && array[index2 - 1] <= array[index1]
-    //                             && array[index1] <= array[index2 + 1]
-    //                             || index2 == array.length - 1
-    //                                     && array[index1] >= array[index2 - 1])) {
-    //                 res = true;
-    //             }
-    //         }
-    //     }
-    //     return res;
-    // }
-
     public static boolean isOneSwap(int[] array) {
         boolean res = false;
         int index1 = -1;
@@ -184,7 +150,6 @@ public class Arrays {
         }
         return index == limit ? -1 : index;
     }
-
 
     public static <T> void sort(T[] array, Comparator<T> comparator) {
         int length = array.length;
@@ -242,23 +207,8 @@ public class Arrays {
         }
         return result;
     }
-    // public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
-    //     T[] result = java.util.Arrays.copyOf(array, 0);
-    //     for( int i = 0; i < array.length; i++) {
-    //         if(predicate.test(array[i])) {
-    //             result = insert(result, result.length, array[i]);
-    //         }
-    //     }
-    //     return result;
-    // }
 
     public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
-        // T[] result = java.util.Arrays.copyOf(array, 0);
-        // for(int i = 0; i < array.length; i++) {
-        //     if(!predicate.test(array[i])) {
-        //         result = insert(result, result.length, array[i]);
-        //     }
-        // }
         return find(array, predicate.negate());
     }
 
@@ -275,5 +225,30 @@ public class Arrays {
                 }
             } 
         } while (!flSort);
+    }
+
+    /**
+     * 
+     * @param chars - array of char primitives
+     * @param mustBeRules - array of rules that must be true
+     * @return mustNotBeRules - array of rules that must be false
+     * @return empty error message if array of chars matches all rules otherwise specific error message what rules don't be matches
+     */
+    public static String matchesRules(char[] chars, CharacterRule[] mustBeRules, CharacterRule[] mustNotBeRule) {
+        boolean flag = false;
+        for(int i = 0; i < mustBeRules.length; i++) {
+            for(int j = 0; j < chars.length; j++){
+                if(mustBeRules[i].predicate.test(chars[j])) {
+                    flag = false;
+                }
+                if(mustNotBeRule[i].predicate.test(chars[j])) {
+                    flag = true;
+                }
+                if(flag = true) {
+                    
+                }
+            }
+        }
+        return "";
     }
     }
